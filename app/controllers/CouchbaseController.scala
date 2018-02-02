@@ -14,14 +14,13 @@ import play.api.libs.json._
 import org.reactivecouchbase.rs.scaladsl.{N1qlQuery, ReactiveCouchbase}
 
 @Singleton
-class ApiController @Inject()(cc: ControllerComponents, couchbase: Couchbase)
+class CouchbaseController @Inject()(cc: ControllerComponents, couchbase: Couchbase)
     (implicit ec: ExecutionContext, materializer: Materializer) extends AbstractController(cc) {
 
   def testBucket = couchbase.bucket("test")
 
-  def storeAndRead() = Action.async {
-   for {
-     value <- testBucket.get("key1")
-   } yield Ok(Json.toJson(value))
+  def read() = Action.async {
+      val value = testBucket.get("key1")
+     value.map(i => Ok(Json.toJson(i)))
   }
 }
