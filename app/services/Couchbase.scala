@@ -19,7 +19,7 @@ class Couchbase @Inject()(configuration: Configuration, lifecycle: ApplicationLi
       |      username = "test"
       |      password = "testpass"
       |    }
-      |    hosts = ["127.0.0.1"]
+      |    hosts = ["ec2-34-213-160-226.us-west-2.compute.amazonaws.com"]
       |  }
       |}
     """.stripMargin))
